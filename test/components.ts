@@ -54,6 +54,11 @@ describe('ComponentManager', () => {
             fs.pathExists(expectedPath).should.eventually.be.true;
         });
         it('should throw if it cant download the component', async () => {
+            const tmpobj = tmp.dirSync();
+            const dataPath = tmpobj.name;
+            const st = sandbox.stub(ospath, 'data');
+            st.returns(dataPath);
+
             subject.path('non-existent.txt').should.eventually.throw();
         });
     });
