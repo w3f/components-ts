@@ -22,11 +22,17 @@ const cfg = {
 };
 const subject = new ComponentsManager(cfg, downloader, logger);
 let sandbox;
+let dataPath: string;
 
 describe('ComponentManager', () => {
     describe('path', () => {
         beforeEach(() => {
             sandbox = sinon.createSandbox();
+
+            const tmpobj = tmp.dirSync();
+            dataPath = tmpobj.name;
+            const st = sandbox.stub(ospath, 'data');
+            st.returns(dataPath);
         });
 
         afterEach(() => {
@@ -38,11 +44,6 @@ describe('ComponentManager', () => {
         });
 
         it('should download the component the first time called', async () => {
-            const tmpobj = tmp.dirSync();
-            const dataPath = tmpobj.name;
-            const st = sandbox.stub(ospath, 'data');
-            st.returns(dataPath);
-
             const filename = 'hello-world.sh';
 
             const expectedPath = path.join(dataPath, 'w3f', 'components', filename);
@@ -54,11 +55,6 @@ describe('ComponentManager', () => {
             fs.pathExists(expectedPath).should.eventually.be.true;
         });
         it('should throw if it cant download the component', async () => {
-            const tmpobj = tmp.dirSync();
-            const dataPath = tmpobj.name;
-            const st = sandbox.stub(ospath, 'data');
-            st.returns(dataPath);
-
             subject.path('non-existent.txt').should.eventually.throw();
         });
     });
