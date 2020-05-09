@@ -1,8 +1,8 @@
 {
   "name": "@w3f/components",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Components manager",
-  "repository": "git@github.com:w3f/downloader-ts.git",
+  "repository": "git@github.com:w3f/components-ts.git",
   "author": "W3F Infrastructure Team <devops@web3.foundation>",
   "license": "Apache-2.0",
   "main": "./dist/index.js",
@@ -24,7 +24,8 @@
     "@w3f/logger": "^0.3.0",
     "axios": "^0.19.2",
     "fs-extra": "^9.0.0",
-    "ospath": "^1.2.2"
+    "ospath": "^1.2.2",
+    "tar": "^6.0.2"
   },
   "devDependencies": {
     "@types/chai": "^4.2.9",
@@ -34,9 +35,11 @@
     "@types/mocha": "^7.0.1",
     "@types/node": "^13.11.1",
     "@types/sinon": "^9.0.0",
+    "@types/tar": "^4.0.3",
     "@types/tmp": "^0.1.0",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
     "@typescript-eslint/parser": "^2.25.0",
+    "@w3f/cmd": "^0.1.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "eslint": "^6.6.0",
