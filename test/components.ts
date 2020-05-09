@@ -6,7 +6,6 @@ import path from 'path';
 import sinon from 'sinon';
 import tmp from 'tmp';
 import { createLogger } from '@w3f/logger';
-import { DownloadManager } from '@w3f/downloader';
 
 
 import { ComponentsManager } from '../src/index';
@@ -15,12 +14,11 @@ chai.use(chaiAsPromised);
 chai.should();
 
 const logger = createLogger();
-const downloader = new DownloadManager();
 const cfg = {
     'hello-world.sh': 'https://w3f.github.io/components-ts/test/hello-world.sh',
     'non-existent.txt': 'http://non.existent.com/non-existent.txt'
 };
-const subject = new ComponentsManager(cfg, downloader, logger);
+const subject = new ComponentsManager(cfg, logger);
 let sandbox;
 let dataPath: string;
 
