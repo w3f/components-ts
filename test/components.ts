@@ -19,6 +19,7 @@ const cfg = {
     'hello-world.sh': 'https://w3f.github.io/components-ts/test/hello-world.sh',
     'non-existent.txt': 'http://non.existent.com/non-existent.txt',
     'hello-world-tar-gz.sh': 'https://w3f.github.io/components-ts/test/hello-world.sh.tar.gz',
+    'some/desired/path/hello-world.sh': 'https://w3f.github.io/components-ts/test/hello-world.sh',
 };
 const subject = new ComponentsManager(cfg, logger);
 let sandbox;
@@ -66,6 +67,22 @@ describe('ComponentManager', () => {
 
         it('should handle tar.gz archives', async () => {
             const filename = 'hello-world-tar-gz.sh';
+
+            const expectedPath = path.join(dataPath, 'w3f', 'components', filename);
+
+            fs.pathExists(expectedPath).should.eventually.be.false;
+
+            const actualPath = await subject.path(filename);
+            actualPath.should.eq(expectedPath);
+
+            fs.pathExists(expectedPath).should.eventually.be.true;
+
+            const expectedOutput = 'Hello World!';
+            const actualOutput = await cmd.exec(expectedPath);
+            actualOutput.should.eq(expectedOutput);
+        });
+        it('should handle target subpaths', async () => {
+            const filename = 'some/desired/path/hello-world.sh';
 
             const expectedPath = path.join(dataPath, 'w3f', 'components', filename);
 
