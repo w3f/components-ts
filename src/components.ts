@@ -14,6 +14,7 @@ export class ComponentsManager implements Components {
     private downloader: Downloader;
 
     constructor(
+        private readonly appName: string,
         private readonly componentsMap: ComponentsMap,
         private readonly logger: Logger
     ) {
@@ -51,7 +52,7 @@ export class ComponentsManager implements Components {
     }
 
     public basePath(): string {
-        return path.join(ospath.data(), 'w3f', 'components');
+        return path.join(ospath.data(), this.appName, 'components');
     }
 
     private isTarball(url: string): boolean {
