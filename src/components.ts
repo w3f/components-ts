@@ -6,11 +6,11 @@ import path from 'path';
 import tar from 'tar';
 
 
-import { Components, ComponentsMap } from './index';
+import { ComponentsManager, ComponentsMap } from './index';
 
 const zipExtension = 'tar.gz';
 
-export class ComponentsManager implements Components {
+export class Components implements ComponentsManager {
     private downloader: Downloader;
 
     constructor(

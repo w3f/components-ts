@@ -8,7 +8,7 @@ import tmp from 'tmp';
 import { createLogger } from '@w3f/logger';
 import { Cmd } from '@w3f/cmd';
 
-import { ComponentsManager } from '../src/index';
+import { Components } from '../src/index';
 
 chai.use(chaiAsPromised);
 chai.should();
@@ -22,7 +22,7 @@ const cfg = {
     'some/desired/path/hello-world-tar-gz.sh': 'https://w3f.github.io/components-ts/test/hello-world.sh.tar.gz',
 };
 const appName = 'w3f'
-const subject = new ComponentsManager(appName, cfg, logger);
+const subject = new Components(appName, cfg, logger);
 let sandbox;
 let dataPath: string;
 
