@@ -22,7 +22,7 @@
   "dependencies": {
     "@w3f/downloader": "^0.2.0",
     "@w3f/logger": "^0.3.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "fs-extra": "^9.0.0",
     "ospath": "^1.2.2",
     "tar": "^6.0.2"
